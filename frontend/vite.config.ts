@@ -15,15 +15,15 @@ export default defineConfig(() => {
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: 'hhttps://task-backend-ryya.onrender.com',
           changeOrigin: true,
         },
         '/tasks': {
-          target: 'http://localhost:3000',
+          target: 'hhttps://task-backend-ryya.onrender.com',
           changeOrigin: true,
         },
         '/members': {
-          target: 'http://localhost:3000',
+          target: 'hhttps://task-backend-ryya.onrender.com',
           changeOrigin: true,
         },
       }
