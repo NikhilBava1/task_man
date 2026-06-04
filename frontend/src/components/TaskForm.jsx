@@ -29,6 +29,7 @@ const TaskForm = ({ open, onClose, onSubmit, task }) => {
 
   useEffect(() => {
     if (open) {
+      console.log('TaskForm opened with task:', task);
       if (task) {
         setFormData({
           title: task.title,

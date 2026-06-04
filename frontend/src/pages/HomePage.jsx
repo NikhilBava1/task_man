@@ -45,8 +45,10 @@ const HomePage = () => {
     try {
       setLoading(true);
       const data = await getAllTasks();
+      console.log('Fetched tasks:', data);
       setTasks(data);
     } catch (error) {
+      console.error('Fetch tasks error:', error);
       showSnackbar('Failed to fetch tasks', 'error');
     } finally {
       setLoading(false);
@@ -70,12 +72,20 @@ const HomePage = () => {
 
   const handleEditTask = async (data) => {
     try {
+      console.log('handleEditTask called with data:', data);
+      console.log('editingTask:', editingTask);
+      if (!editingTask || !editingTask.id) {
+        console.error('Invalid task data - editingTask:', editingTask);
+        showSnackbar('Invalid task data', 'error');
+        return;
+      }
       const updatedTask = await updateTask(editingTask.id, data);
       setTasks(prev => prev.map(task => task.id === editingTask.id ? updatedTask : task));
       setModalOpen(false);
       setEditingTask(null);
       showSnackbar('Task updated successfully!', 'success');
     } catch (error) {
+      console.error('Edit task error:', error);
       showSnackbar('Failed to update task', 'error');
     }
   };
@@ -106,6 +116,7 @@ const HomePage = () => {
   };
 
   const handleOpenEdit = (task) => {
+    console.log('Opening edit for task:', task);
     setEditingTask(task);
     setModalOpen(true);
   };
